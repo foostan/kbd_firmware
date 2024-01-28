@@ -16,9 +16,9 @@ qmk-init:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	rm -rf firmwares/qmk/qmk_firmware/keyboards/tmp/${KB}
-	mkdir -p firmwares/qmk/qmk_firmware/keyboards/tmp/${KB}
-	cp -r keyboards/${KB}/qmk/qmk_firmware/ firmwares/qmk/qmk_firmware/keyboards/tmp/${KB}
+	rm -f firmwares/qmk/qmk_firmware/keyboards/tmp/${KB}
+	mkdir -p firmwares/qmk/qmk_firmware/keyboards/tmp
+	ln -s $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware firmwares/qmk/qmk_firmware/keyboards/tmp/${KB}
 
 qmk-compile:
 	$(eval KB := ${kb})
