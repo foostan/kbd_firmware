@@ -2,7 +2,7 @@
 
 KB := crkbd
 KR := rev1
-KM := via
+KM := default
 
 git-submodule:
 	git submodule update --remote
