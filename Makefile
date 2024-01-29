@@ -31,3 +31,24 @@ qmk-flash:
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
 	cd src/qmk/qmk_firmware; qmk flash -kb tmp/${KB}/${KR} -km ${KM}
+
+qmk-init-all:
+	kb=crkbd kr=rev1 km=default make qmk-init
+	kb=crkbd kr=rev1 km=via make qmk-init
+	kb=crkbd kr=rev4 km=default make qmk-init
+	kb=crkbd kr=rev4 km=via make qmk-init
+	kb=cornelius kr=rev1 km=default make qmk-init
+	kb=cornelius kr=rev1 km=via make qmk-init
+	kb=cornelius kr=rev2 km=default make qmk-init
+	kb=cornelius kr=rev2 km=via make qmk-init
+
+qmk-compile-all:
+	kb=crkbd kr=rev1 km=default make qmk-compile
+	kb=crkbd kr=rev1 km=via make qmk-compile
+	kb=crkbd kr=rev4 km=default make qmk-compile
+	kb=crkbd kr=rev4 km=via make qmk-compile
+	kb=cornelius kr=rev1 km=default make qmk-compile
+	kb=cornelius kr=rev1 km=via make qmk-compile
+	kb=cornelius kr=rev2 km=default make qmk-compile
+	kb=cornelius kr=rev2 km=via make qmk-compile
+
