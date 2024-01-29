@@ -12,7 +12,7 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
-        "nkro": true,
+        "nkro": true
     },
     "build": {
         "lto": true
@@ -24,6 +24,10 @@
     "diode_direction": "COL2ROW",
     "processor": "atmega32u4",
     "bootloader": "atmel-dfu",
+    "bootmagic": {
+        "enabled": true,
+        "matrix": [ 0, 0 ]
+    },
     "layouts": {
         "LAYOUT": {
             "layout": [

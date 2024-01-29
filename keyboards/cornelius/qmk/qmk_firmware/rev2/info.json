@@ -24,6 +24,10 @@
     "diode_direction": "COL2ROW",
     "processor": "RP2040",
     "bootloader": "rp2040",
+    "bootmagic": {
+        "enabled": true,
+        "matrix": [ 0, 0 ]
+    },
     "layouts": {
         "LAYOUT": {
             "layout": [
