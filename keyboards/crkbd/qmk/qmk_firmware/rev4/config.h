@@ -9,7 +9,3 @@
 #define OLED_UPDATE_INTERVAL 50
 #define I2C1_SDA_PIN GP6
 #define I2C1_SCL_PIN GP7
-
-#ifndef OLED_FONT_H
-#  define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-#endif

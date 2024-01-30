@@ -143,7 +143,7 @@
         "led_count": 54,
         "split": true,
         "split_count": [27, 27],
-        "max_brightness": 120,
+        "max_brightness": 50,
         "animations": {
             "alternating": true,
             "breathing": true,
@@ -162,7 +162,7 @@
     },
     "rgb_matrix": {
         "driver": "ws2812",
-        "max_brightness": 120,
+        "max_brightness": 50,
         "split_count": [27, 27],
         "layout": [
             {"x": 85, "y": 16, "flags": 2},

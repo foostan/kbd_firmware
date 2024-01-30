@@ -9,7 +9,3 @@
 #  define RGB_MATRIX_LED_COUNT 54
 #  define SPLIT_TRANSPORT_MIRROR
 #endif
-
-#ifndef OLED_FONT_H
-#  define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-#endif
