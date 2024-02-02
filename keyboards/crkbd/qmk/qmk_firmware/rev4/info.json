@@ -65,10 +65,13 @@
         },
         "transport": {
             "sync": {
-                "matrix_state": true,
-                "layer_state": true,
-                "modifiers": true
-            }
+                "matrix_state": true
+            },
+            "watchdog": true
+
+        },
+        "usb_detect": {
+            "timeout": 500
         }
     },
     "community_layouts": [ "split_3x5_3", "split_3x6_3" ],
