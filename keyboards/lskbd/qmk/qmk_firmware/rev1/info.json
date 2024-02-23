@@ -1,0 +1,229 @@
+{
+    "keyboard_name": "lskbd",
+    "maintainer": "foostan",
+    "manufacturer": "foostan",
+    "url": "https://github.com/foostan/lskbd",
+    "usb": {
+        "vid": "0x4653",
+        "pid": "0x0005",
+        "device_version": "1.0.0"
+    },
+    "processor": "RP2040",
+    "bootloader": "rp2040",
+    "features": {
+        "bootmagic": true,
+        "extrakey": true,
+        "nkro": true,
+        "rgb_matrix": true,
+        "mousekey": true
+    },
+    "build": {
+        "lto": true
+    },
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "direct":[
+            ["GP24", "GP26", "GP28",  "GP4",  "GP5",   "GP7"],
+            ["GP25", "GP27", "GP29",  "GP3",  "GP6",   "GP9"],
+            ["GP23", "GP19", "GP18", "GP15", "GP10",  "GP11"],
+            ["GP22", "GP16", "GP17", "GP14", "GP13",  "GP12"]
+        ]
+    },
+    "bootmagic": {
+        "enabled": true,
+        "matrix": [ 0, 0 ]
+    },
+    "split": {
+        "enabled": true,
+        "bootmagic": {
+            "matrix": [ 4, 0 ]
+        },
+        "matrix_pins": {
+            "right": {
+                "direct":[
+                    ["GP24", "GP26", "GP28",  "GP4",  "GP5",   "GP7"],
+                    ["GP25", "GP27", "GP29",  "GP3",  "GP6",   "GP9"],
+                    ["GP23", "GP19", "GP18", "GP15", "GP10",  "GP11"],
+                    ["GP22", "GP16", "GP17", "GP14", "GP13",  "GP12"]
+                ]
+            }
+        },
+        "transport": {
+            "sync": {
+                "matrix_state": true
+            },
+            "watchdog": true
+
+        },
+        "usb_detect": {
+            "timeout": 500
+        }
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"matrix": [0, 0], "x": 0, "y": 0},
+                {"matrix": [0, 1], "x": 1, "y": 0},
+                {"matrix": [0, 2], "x": 2, "y": 0},
+                {"matrix": [0, 3], "x": 3, "y": 0},
+                {"matrix": [0, 4], "x": 4, "y": 0},
+                {"matrix": [0, 5], "x": 5, "y": 0},
+
+                {"matrix": [4, 0], "x": 6,  "y": 0},
+                {"matrix": [4, 1], "x": 7,  "y": 0},
+                {"matrix": [4, 2], "x": 8,  "y": 0},
+                {"matrix": [4, 3], "x": 9,  "y": 0},
+                {"matrix": [4, 4], "x": 10, "y": 0},
+                {"matrix": [4, 5], "x": 11, "y": 0},
+
+                {"matrix": [1, 0], "x": 0, "y": 1},
+                {"matrix": [1, 1], "x": 1, "y": 1},
+                {"matrix": [1, 2], "x": 2, "y": 1},
+                {"matrix": [1, 3], "x": 3, "y": 1},
+                {"matrix": [1, 4], "x": 4, "y": 1},
+                {"matrix": [1, 5], "x": 5, "y": 1},
+
+                {"matrix": [5, 0], "x": 6,  "y": 1},
+                {"matrix": [5, 1], "x": 7,  "y": 1},
+                {"matrix": [5, 2], "x": 8,  "y": 1},
+                {"matrix": [5, 3], "x": 9,  "y": 1},
+                {"matrix": [5, 4], "x": 10, "y": 1},
+                {"matrix": [5, 5], "x": 11, "y": 1},
+
+                {"matrix": [2, 0], "x": 0, "y": 2},
+                {"matrix": [2, 1], "x": 1, "y": 2},
+                {"matrix": [2, 2], "x": 2, "y": 2},
+                {"matrix": [2, 3], "x": 3, "y": 2},
+                {"matrix": [2, 4], "x": 4, "y": 2},
+                {"matrix": [2, 5], "x": 5, "y": 2},
+
+                {"matrix": [6, 0], "x": 6,  "y": 2},
+                {"matrix": [6, 1], "x": 7,  "y": 2},
+                {"matrix": [6, 2], "x": 8,  "y": 2},
+                {"matrix": [6, 3], "x": 9,  "y": 2},
+                {"matrix": [6, 4], "x": 10, "y": 2},
+                {"matrix": [6, 5], "x": 11, "y": 2},
+
+                {"matrix": [3, 0], "x": 0, "y": 3},
+                {"matrix": [3, 1], "x": 1, "y": 3},
+                {"matrix": [3, 2], "x": 2, "y": 3},
+                {"matrix": [3, 3], "x": 3, "y": 3},
+                {"matrix": [3, 4], "x": 4, "y": 3},
+                {"matrix": [3, 5], "x": 5, "y": 3},
+
+                {"matrix": [7, 0], "x": 6,  "y": 3},
+                {"matrix": [7, 1], "x": 7,  "y": 3},
+                {"matrix": [7, 2], "x": 8,  "y": 3},
+                {"matrix": [7, 3], "x": 9,  "y": 3},
+                {"matrix": [7, 4], "x": 10, "y": 3},
+                {"matrix": [7, 5], "x": 11, "y": 3}
+            ]
+        }
+    },
+    "ws2812": {
+        "driver": "vendor",
+        "pin": "GP2"
+    },
+    "rgb_matrix": {
+        "driver": "ws2812",
+        "led_count": 48,
+        "max_brightness": 50,
+        "split_count": [24, 24],
+        "animations": {
+            "alphas_mods": true,
+            "gradient_up_down": true,
+            "gradient_left_right": true,
+            "breathing": true,
+            "band_sat": true,
+            "band_val": true,
+            "band_pinwheel_sat": true,
+            "band_pinwheel_val": true,
+            "band_spiral_sat": true,
+            "band_spiral_val": true,
+            "cycle_all": true,
+            "cycle_left_right": true,
+            "cycle_up_down": true,
+            "rainbow_moving_chevron": true,
+            "cycle_out_in": true,
+            "cycle_out_in_dual": true,
+            "cycle_pinwheel": true,
+            "cycle_spiral": true,
+            "dual_beacon": true,
+            "rainbow_beacon": true,
+            "rainbow_pinwheels": true,
+            "raindrops": true,
+            "jellybean_raindrops": true,
+            "hue_breathing": true,
+            "hue_pendulum": true,
+            "hue_wave": true,
+            "pixel_fractal": true,
+            "pixel_flow": true,
+            "pixel_rain": true,
+            "typing_heatmap": true,
+            "digital_rain": true,
+            "solid_reactive_simple": true,
+            "solid_reactive": true,
+            "solid_reactive_wide": true,
+            "solid_reactive_multiwide": true,
+            "solid_reactive_cross": true,
+            "solid_reactive_multicross": true,
+            "solid_reactive_nexus": true,
+            "solid_reactive_multinexus": true,
+            "splash": true,
+            "multisplash": true,
+            "solid_splash": true,
+            "solid_multisplash": true
+        },
+        "layout": [
+            {"matrix": [0, 0], "x":   0, "y":  0, "flags": 4},
+            {"matrix": [0, 1], "x":  10, "y":  0, "flags": 4},
+            {"matrix": [0, 2], "x":  20, "y":  0, "flags": 4},
+            {"matrix": [0, 3], "x":  30, "y":  0, "flags": 4},
+            {"matrix": [0, 4], "x":  40, "y":  0, "flags": 4},
+            {"matrix": [0, 5], "x":  50, "y":  0, "flags": 4},
+            {"matrix": [1, 0], "x":   0, "y": 10, "flags": 4},
+            {"matrix": [1, 1], "x":  10, "y": 10, "flags": 4},
+            {"matrix": [1, 2], "x":  20, "y": 10, "flags": 4},
+            {"matrix": [1, 3], "x":  30, "y": 10, "flags": 4},
+            {"matrix": [1, 4], "x":  40, "y": 10, "flags": 4},
+            {"matrix": [1, 5], "x":  50, "y": 10, "flags": 4},
+            {"matrix": [2, 0], "x":   0, "y": 20, "flags": 4},
+            {"matrix": [2, 1], "x":  10, "y": 20, "flags": 4},
+            {"matrix": [2, 2], "x":  20, "y": 20, "flags": 4},
+            {"matrix": [2, 3], "x":  30, "y": 20, "flags": 4},
+            {"matrix": [2, 4], "x":  40, "y": 20, "flags": 4},
+            {"matrix": [2, 5], "x":  50, "y": 20, "flags": 4},
+            {"matrix": [3, 0], "x":   0, "y": 30, "flags": 4},
+            {"matrix": [3, 1], "x":  10, "y": 30, "flags": 4},
+            {"matrix": [3, 2], "x":  20, "y": 30, "flags": 4},
+            {"matrix": [3, 3], "x":  30, "y": 30, "flags": 4},
+            {"matrix": [3, 4], "x":  40, "y": 30, "flags": 4},
+            {"matrix": [3, 5], "x":  50, "y": 30, "flags": 4},
+
+            {"matrix": [4, 0], "x":  60, "y":  0, "flags": 4},
+            {"matrix": [4, 1], "x":  70, "y":  0, "flags": 4},
+            {"matrix": [4, 2], "x":  80, "y":  0, "flags": 4},
+            {"matrix": [4, 3], "x":  90, "y":  0, "flags": 4},
+            {"matrix": [4, 4], "x": 100, "y":  0, "flags": 4},
+            {"matrix": [4, 5], "x": 110, "y":  0, "flags": 4},
+            {"matrix": [5, 0], "x":  60, "y": 10, "flags": 4},
+            {"matrix": [5, 1], "x":  70, "y": 10, "flags": 4},
+            {"matrix": [5, 2], "x":  80, "y": 10, "flags": 4},
+            {"matrix": [5, 3], "x":  90, "y": 10, "flags": 4},
+            {"matrix": [5, 4], "x": 100, "y": 10, "flags": 4},
+            {"matrix": [5, 5], "x": 110, "y": 10, "flags": 4},
+            {"matrix": [6, 0], "x":  60, "y": 20, "flags": 4},
+            {"matrix": [6, 1], "x":  70, "y": 20, "flags": 4},
+            {"matrix": [6, 2], "x":  80, "y": 20, "flags": 4},
+            {"matrix": [6, 3], "x":  90, "y": 20, "flags": 4},
+            {"matrix": [6, 4], "x": 100, "y": 20, "flags": 4},
+            {"matrix": [6, 5], "x": 110, "y": 20, "flags": 4},
+            {"matrix": [7, 0], "x":  60, "y": 30, "flags": 4},
+            {"matrix": [7, 1], "x":  70, "y": 30, "flags": 4},
+            {"matrix": [7, 2], "x":  80, "y": 30, "flags": 4},
+            {"matrix": [7, 3], "x":  90, "y": 30, "flags": 4},
+            {"matrix": [7, 4], "x": 100, "y": 30, "flags": 4},
+            {"matrix": [7, 5], "x": 110, "y": 30, "flags": 4}
+        ]
+    }
+}
