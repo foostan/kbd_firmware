@@ -36,6 +36,7 @@ qmk-flash:
 qmk-init-all:
 	kb=crkbd make qmk-init
 	kb=cornelius make qmk-init
+	kb=lskbd make qmk-init
 
 qmk-compile-all:
 	kb=crkbd kr=rev1 km=via make qmk-compile
@@ -43,4 +44,5 @@ qmk-compile-all:
 	kb=crkbd kr=rev4/mini km=via make qmk-compile
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
+	kb=lskbd kr=rev1 km=via make qmk-compile
 
