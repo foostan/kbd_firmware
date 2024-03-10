@@ -4,6 +4,7 @@
         "pid": "0x0104"
     },
     "rgb_matrix": {
+        "split_count": [20, 20],
         "layout": [
             {"matrix": [3, 5], "x": 95, "y": 63, "flags": 4},
             {"matrix": [2, 5], "x": 85, "y": 39, "flags": 4},
