@@ -1,4 +1,4 @@
-.PHONY: git-submodule, qmk-clean, qmk-init, qmk-compile, qmk-flash, qmk-init-all, qmk-compile-all
+.PHONY: git-submodule, qmk-clean, qmk-init, qmk-compile, qmk-flash, qmk-init-all, qmk-compile-all, vial-qmk-clean, vial-qmk-init, vial-qmk-compile, vial-qmk-flash, vial-qmk-init-all, vial-qmk-compile-all
 
 KB := crkbd
 KR := rev1
@@ -45,4 +45,37 @@ qmk-compile-all:
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
 	kb=lskbd kr=rev1 km=via make qmk-compile
+
+vial-qmk-clean:
+	rm -rf src/vial-kb/vial-qmk/keyboards/tmp
+	cd src/vial-kb/vial-qmk; qmk clean
+
+vial-qmk-init:
+	$(eval KB := ${kb})
+	rm -f src/vial-kb/vial-qmk/keyboards/tmp/${KB}
+	mkdir -p src/vial-kb/vial-qmk/keyboards/tmp
+	ln -s $(shell pwd)/keyboards/${KB}/vial-kb/vial-qmk src/vial-kb/vial-qmk/keyboards/tmp/${KB}
+
+vial-qmk-compile:
+	$(eval KB := ${kb})
+	$(eval KR := ${kr})
+	$(eval KM := ${km})
+	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
+	cd src/vial-kb/vial-qmk; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
+	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.hex keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.hex | true
+	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.uf2 keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.uf2 | true
+
+vial-qmk-flash:
+	$(eval KB := ${kb})
+	$(eval KR := ${kr})
+	$(eval KM := ${km})
+	cd src/vial-kb/vial-qmk; qmk flash -kb tmp/${KB}/${KR} -km ${KM}
+
+vial-qmk-init-all:
+	kb=crkbd make qmk-init
+	kb=cornelius make qmk-init
+	kb=lskbd make qmk-init
+
+vial-qmk-compile-all:
+	kb=lskbd kr=rev1 km=vial make qmk-compile
 
