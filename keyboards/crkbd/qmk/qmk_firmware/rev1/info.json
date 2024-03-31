@@ -34,7 +34,12 @@
         "bootmagic": {
             "matrix": [ 4, 1 ]
         },
-        "soft_serial_pin": "D2"
+        "soft_serial_pin": "D2",
+        "transport": {
+            "sync": {
+                "matrix_state": true
+            }
+        }
     },
     "community_layouts": [ "split_3x5_3", "split_3x6_3" ],
     "layouts": {
