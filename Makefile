@@ -1,4 +1,4 @@
-.PHONY: git-submodule, qmk-clean, qmk-init, qmk-compile, qmk-flash, qmk-init-all, qmk-compile-all, vial-qmk-clean, vial-qmk-init, vial-qmk-compile, vial-qmk-flash, vial-qmk-init-all, vial-qmk-compile-all
+.PHONY: git-submodule, qmk-clean, qmk-init, qmk-compile, qmk-flash, qmk-init-all, qmk-compile-all, vial-qmk-clean, vial-qmk-init, vial-qmk-compile, vial-qmk-flash, vial-qmk-init-all, vial-qmk-compile-all, update-all
 
 KB := crkbd
 KR := rev1
@@ -74,12 +74,20 @@ vial-qmk-flash:
 	cd src/vial-kb/vial-qmk; qmk flash -kb tmp/${KB}/${KR} -km ${KM}
 
 vial-qmk-init-all:
-	kb=crkbd make qmk-init
-	kb=cornelius make qmk-init
-	kb=lskbd make qmk-init
+	kb=crkbd make vial-qmk-init
+	kb=cornelius make vial-qmk-init
+	kb=lskbd make vial-qmk-init
 
 vial-qmk-compile-all:
 	kb=crkbd kr=rev4/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4/mini km=vial_mini make vial-qmk-compile
-	kb=lskbd kr=rev1 km=vial make qmk-compile
+	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
+update-all:
+	make git-submodule
+	make qmk-clean
+	make qmk-init
+	make qmk-compile-all
+	make vial-qmk-clean
+	make vial-qmk-init
+	make vial-qmk-compile-all
