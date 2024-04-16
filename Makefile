@@ -86,8 +86,8 @@ vial-qmk-compile-all:
 update-all:
 	make git-submodule
 	make qmk-clean
-	make qmk-init
+	make qmk-init-all
 	make qmk-compile-all
 	make vial-qmk-clean
-	make vial-qmk-init
+	make vial-qmk-init-all
 	make vial-qmk-compile-all
