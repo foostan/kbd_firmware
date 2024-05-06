@@ -17,6 +17,7 @@ qmk-init:
 	rm -f src/qmk/qmk_firmware/keyboards/tmp/${KB}
 	mkdir -p src/qmk/qmk_firmware/keyboards/tmp
 	ln -s $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware src/qmk/qmk_firmware/keyboards/tmp/${KB}
+	mkdir -p keyboards/${KB}/qmk/qmk_firmware/.build
 
 qmk-compile:
 	$(eval KB := ${kb})
@@ -40,8 +41,10 @@ qmk-init-all:
 
 qmk-compile-all:
 	kb=crkbd kr=rev1 km=via make qmk-compile
-	kb=crkbd kr=rev4/standard km=via make qmk-compile
-	kb=crkbd kr=rev4/mini km=via make qmk-compile
+	kb=crkbd kr=rev4_0/standard km=via make qmk-compile
+	kb=crkbd kr=rev4_0/mini km=via make qmk-compile
+	kb=crkbd kr=rev4_1/standard km=via make qmk-compile
+	kb=crkbd kr=rev4_1/mini km=via make qmk-compile
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
 	kb=lskbd kr=rev1 km=via make qmk-compile
@@ -57,6 +60,7 @@ vial-qmk-init:
 	cp -r $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware/ src/vial-kb/vial-qmk/keyboards/tmp/${KB}
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
 	ln -s $(shell pwd)/keyboards/${KB}/vial-kb/vial-qmk/keymaps src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
+	mkdir -p keyboards/${KB}/vial-kb/vial-qmk/.build
 
 vial-qmk-compile:
 	$(eval KB := ${kb})
@@ -79,8 +83,10 @@ vial-qmk-init-all:
 	kb=lskbd make vial-qmk-init
 
 vial-qmk-compile-all:
-	kb=crkbd kr=rev4/standard km=vial make vial-qmk-compile
-	kb=crkbd kr=rev4/mini km=vial_mini make vial-qmk-compile
+	kb=crkbd kr=rev4_0/standard km=vial make vial-qmk-compile
+	kb=crkbd kr=rev4_0/mini km=vial_mini make vial-qmk-compile
+	kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
+	kb=crkbd kr=rev4_1/mini km=vial_mini make vial-qmk-compile
 	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
 update-all:
