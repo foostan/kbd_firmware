@@ -17,6 +17,7 @@ qmk-init:
 	rm -f src/qmk/qmk_firmware/keyboards/tmp/${KB}
 	mkdir -p src/qmk/qmk_firmware/keyboards/tmp
 	ln -s $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware src/qmk/qmk_firmware/keyboards/tmp/${KB}
+	mkdir -p keyboards/${KB}/qmk/qmk_firmware/.build
 
 qmk-compile:
 	$(eval KB := ${kb})
@@ -59,6 +60,7 @@ vial-qmk-init:
 	cp -r $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware/ src/vial-kb/vial-qmk/keyboards/tmp/${KB}
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
 	ln -s $(shell pwd)/keyboards/${KB}/vial-kb/vial-qmk/keymaps src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
+	mkdir -p keyboards/${KB}/vial-kb/vial-qmk/.build
 
 vial-qmk-compile:
 	$(eval KB := ${kb})
