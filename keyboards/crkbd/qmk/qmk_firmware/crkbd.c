@@ -15,13 +15,28 @@ static void oled_render_layer_state(void) {
             oled_write_ln_P(PSTR("Default"), false);
             break;
         case 1:
-            oled_write_ln_P(PSTR("Lower"), false);
+            oled_write_ln_P(PSTR("Function"), false);
             break;
         case 2:
-            oled_write_ln_P(PSTR("Raise"), false);
+            oled_write_ln_P(PSTR("Symbol"), false);
             break;
         case 3:
-            oled_write_ln_P(PSTR("Adjust"), false);
+            oled_write_ln_P(PSTR("Number"), false);
+            break;
+        case 4:
+            oled_write_ln_P(PSTR("Navigate"), false);
+            break;
+        case 5:
+            oled_write_ln_P(PSTR("Mouse"), false);
+            break;
+        case 6:
+            oled_write_ln_P(PSTR("Media"), false);
+            break;
+        case 7:
+            oled_write_ln_P(PSTR("Gaming"), false);
+            break;
+        case 8:
+            oled_write_ln_P(PSTR("Gaming2"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
