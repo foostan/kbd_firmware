@@ -20,7 +20,7 @@ make git-submodule
 ```sh
 make qmk-clean
 kb=crkbd make qmk-init
-kb=crkbd kr=rev4/standard km=via make qmk-compile
+kb=crkbd kr=rev1 km=via make qmk-compile
 ```
 A built data will be stored on `keyboards/crkbd/qmk/qmk_firmware/.build`\
 Please change `kb`, `kr` and `km` when build other.
@@ -29,12 +29,12 @@ Please change `kb`, `kr` and `km` when build other.
 ```sh
 make vial-qmk-clean
 kb=crkbd make vial-qmk-init
-kb=crkbd kr=rev4/standard km=vial make vial-qmk-compile
+kb=crkbd kr=rev1 km=vial make vial-qmk-compile
 ```
 A built data will be stored on `keyboards/crkbd/vial-kb/vial-qmk/.build`\
 Please change `kb`, `kr` and `km` when build other.
 
 ### All cleaning and building
 ```sh
-make update-al
+make update-all
 ```
