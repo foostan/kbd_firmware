@@ -1,0 +1,4 @@
+.git/
+.devcontainer/
+Dockerfile
+docker-compose.yml

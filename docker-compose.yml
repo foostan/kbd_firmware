@@ -1,0 +1,9 @@
+services:
+  qmk:
+    build: .
+    volumes:
+      - .:/project
+      - modules:/project/src
+
+volumes:
+  modules:

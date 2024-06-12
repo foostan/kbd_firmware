@@ -1,6 +1,28 @@
 #pragma once
 
-/* Select hand configuration */
-#define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
+#define SPLIT_USB_DETECT
+
+#define NO_MUSIC_MODE
+
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+
+#define NO_ACTION_ONESHOT
+
+
+#define RGBLIGHT_SLEEP 
+#define OLED_TIMEOUT 0
+
+#define RGBLIGHT_TIMEOUT 300000
+
+#define SPLIT_WPM_ENABLE
+
+#define SPLIT_OLED_ENABLE
+
+#define SPLIT_TRANSPORT_MIRROR
+
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
+#define SPLIT_ACTIVITY_ENABLE
+
+#define SPLIT_TRANSACTION_IDS_USER RPC_OLED_SYNC
