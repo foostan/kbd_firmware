@@ -1,7 +1,7 @@
 {
-  "name": "Cornelius",
-  "vendorId": "0x3265",
-  "productId": "0x0005",
+  "name": "Cornelius v2",
+  "vendorId": "0x4653",
+  "productId": "0x0006",
   "matrix": {"rows": 4, "cols": 12},
   "layouts": {
     "keymap": [
