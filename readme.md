@@ -29,7 +29,7 @@ Please change `kb`, `kr` and `km` when build other.
 ```sh
 make vial-qmk-clean
 kb=crkbd make vial-qmk-init
-kb=crkbd kr=rev4/standard km=vial make vial-qmk-compile
+kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
 ```
 A built data will be stored on `keyboards/crkbd/vial-kb/vial-qmk/.build`\
 Please change `kb`, `kr` and `km` when build other.
