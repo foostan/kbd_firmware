@@ -36,5 +36,5 @@ Please change `kb`, `kr` and `km` when build other.
 
 ### All cleaning and building
 ```sh
-make update-al
+make update-all
 ```
