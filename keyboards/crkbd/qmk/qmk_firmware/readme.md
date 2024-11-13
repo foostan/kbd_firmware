@@ -18,13 +18,13 @@ qmk flash -kb crkbd/rev1 -km default
 Flash example for this keyboard of v4:
 
 ```sh
-qmk flash -kb crkbd/rev4/standard -km default
+qmk flash -kb crkbd/rev4_1/standard -km default
 ```
 
 Flash example for this keyboard of v4 mini:
 
 ```sh
-qmk flash -kb crkbd/rev4/mini -km default
+qmk flash -kb crkbd/rev4_1/mini -km default
 ```
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
