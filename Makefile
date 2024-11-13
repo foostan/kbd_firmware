@@ -87,6 +87,7 @@ vial-qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=vial_mini make vial-qmk-compile
 	kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4_1/mini km=vial_mini make vial-qmk-compile
+	kb=cornelius kr=rev2 km=vial make vial-qmk-compile
 	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
 update-all:
