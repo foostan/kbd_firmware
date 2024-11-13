@@ -57,7 +57,7 @@ vial-qmk-init:
 	$(eval KB := ${kb})
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp/${KB}
 	mkdir -p src/vial-kb/vial-qmk/keyboards/tmp/${KB}
-	cp -r $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware/ src/vial-kb/vial-qmk/keyboards/tmp/${KB}
+	cp -r $(shell pwd)/keyboards/${KB}/qmk/qmk_firmware/* src/vial-kb/vial-qmk/keyboards/tmp/${KB}
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
 	ln -s $(shell pwd)/keyboards/${KB}/vial-kb/vial-qmk/keymaps src/vial-kb/vial-qmk/keyboards/tmp/${KB}/keymaps
 	mkdir -p keyboards/${KB}/vial-kb/vial-qmk/.build
@@ -66,8 +66,8 @@ vial-qmk-compile:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	$(eval FILE := $(shell echo "${kb}_qmk_firmware_${kr}_${km}" | sed 's/\//_/'))
-	cd src/vial-kb/vial-qmk; qmk compile -kb tmp/${KB}/qmk_firmware/${KR} -km ${KM}
+	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
+	cd src/vial-kb/vial-qmk; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
 	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.hex keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.hex | true
 	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.uf2 keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.uf2 | true
 
