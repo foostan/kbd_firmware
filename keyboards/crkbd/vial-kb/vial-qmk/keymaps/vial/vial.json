@@ -3,7 +3,7 @@
     "vendorId": "0x4653",
     "productId": "0x0004",
     "matrix": {"rows": 8, "cols": 7},
-    "lighting": "vialrgb",
+    "lighting": "none",
     "layouts": {
         "labels": [
             ["Left EX1",  "Key", "Encoder", "None"],

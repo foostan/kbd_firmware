@@ -1,4 +1,6 @@
 VIA_ENABLE         = yes
 VIAL_ENABLE        = yes
-VIALRGB_ENABLE     = yes
+VIALRGB_ENABLE     = no
+RGB_MATRIX_ENABLE  = no
 ENCODER_MAP_ENABLE = yes
+CAPS_WORD_ENABLE   = yes
