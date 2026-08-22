@@ -23,8 +23,10 @@ qmk-compile:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
-	cd src/qmk/qmk_firmware; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
+	$(eval QMK_KB := tmp/${KB}$(if $(strip ${KR}),/${KR}))
+	$(eval FILE := $(shell echo "${kb}$(if $(strip ${kr}),_${kr})_${km}" | sed 's/\//_/'))
+	cd src/qmk/qmk_firmware; qmk compile -kb ${QMK_KB} -km ${KM}
+	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.bin keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.bin | true
 	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.hex keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.hex | true
 	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.uf2 keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.uf2 | true
 
@@ -32,12 +34,14 @@ qmk-flash:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	cd src/qmk/qmk_firmware; qmk flash -kb tmp/${KB}/${KR} -km ${KM}
+	$(eval QMK_KB := tmp/${KB}$(if $(strip ${KR}),/${KR}))
+	cd src/qmk/qmk_firmware; qmk flash -kb ${QMK_KB} -km ${KM}
 
 qmk-init-all:
 	kb=crkbd make qmk-init
 	kb=cornelius make qmk-init
 	kb=lskbd make qmk-init
+	kb=mrkbd make qmk-init
 
 qmk-compile-all:
 	kb=crkbd kr=rev1 km=via make qmk-compile
@@ -48,6 +52,7 @@ qmk-compile-all:
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
 	kb=lskbd kr=rev1 km=via make qmk-compile
+	kb=mrkbd km=via make qmk-compile
 
 vial-qmk-clean:
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp
