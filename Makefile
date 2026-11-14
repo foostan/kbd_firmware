@@ -52,6 +52,8 @@ qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=via make qmk-compile
 	kb=crkbd kr=rev4_1/standard km=via make qmk-compile
 	kb=crkbd kr=rev4_1/mini km=via make qmk-compile
+	kb=crkbd kr=rev5_0/standard km=via make qmk-compile
+	kb=crkbd kr=rev5_0/mini km=via make qmk-compile
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
 	kb=lskbd kr=rev1 km=via make qmk-compile
@@ -97,6 +99,8 @@ vial-qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=vial_mini make vial-qmk-compile
 	kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4_1/mini km=vial_mini make vial-qmk-compile
+	kb=crkbd kr=rev5_0/standard km=vial_rev5 make vial-qmk-compile
+	kb=crkbd kr=rev5_0/mini km=vial_rev5_mini make vial-qmk-compile
 	kb=cornelius kr=rev2 km=vial make vial-qmk-compile
 	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
