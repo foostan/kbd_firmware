@@ -4,9 +4,11 @@ KB := crkbd
 KR := rev1
 KM := default
 
+# Move qmk_firmware / vial-qmk to the latest upstream, then check out their
+# nested submodules (ChibiOS, LUFA, ...) at the commits those trees pin.
 git-submodule:
-	git submodule update --remote
-	git submodule update --init --recursive
+	git submodule update --init --remote
+	git submodule foreach 'git submodule update --init --recursive'
 
 qmk-clean:
 	rm -rf src/qmk/qmk_firmware/keyboards/tmp
@@ -26,9 +28,10 @@ qmk-compile:
 	$(eval QMK_KB := tmp/${KB}$(if $(strip ${KR}),/${KR}))
 	$(eval FILE := $(shell echo "${kb}$(if $(strip ${kr}),_${kr})_${km}" | sed 's/\//_/'))
 	cd src/qmk/qmk_firmware; qmk compile -kb ${QMK_KB} -km ${KM}
-	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.bin keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.bin | true
-	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.hex keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.hex | true
-	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.uf2 keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.uf2 | true
+	@for ext in bin hex uf2; do \
+		src=src/qmk/qmk_firmware/.build/tmp_${FILE}.$$ext; \
+		if [ -f $$src ]; then cp $$src keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.$$ext; echo "Copied ${FILE}.$$ext"; fi; \
+	done
 
 qmk-flash:
 	$(eval KB := ${kb})
@@ -73,8 +76,10 @@ vial-qmk-compile:
 	$(eval KM := ${km})
 	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
 	cd src/vial-kb/vial-qmk; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
-	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.hex keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.hex | true
-	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.uf2 keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.uf2 | true
+	@for ext in bin hex uf2; do \
+		src=src/vial-kb/vial-qmk/.build/tmp_${FILE}.$$ext; \
+		if [ -f $$src ]; then cp $$src keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.$$ext; echo "Copied ${FILE}.$$ext"; fi; \
+	done
 
 vial-qmk-flash:
 	$(eval KB := ${kb})
