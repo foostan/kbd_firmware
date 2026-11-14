@@ -4,9 +4,11 @@ KB := crkbd
 KR := rev1
 KM := default
 
+# Move qmk_firmware / vial-qmk to the latest upstream, then check out their
+# nested submodules (ChibiOS, LUFA, ...) at the commits those trees pin.
 git-submodule:
-	git submodule update --remote
-	git submodule update --init --recursive
+	git submodule update --init --remote
+	git submodule foreach 'git submodule update --init --recursive'
 
 qmk-clean:
 	rm -rf src/qmk/qmk_firmware/keyboards/tmp
@@ -23,21 +25,26 @@ qmk-compile:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
-	cd src/qmk/qmk_firmware; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
-	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.hex keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.hex | true
-	cp src/qmk/qmk_firmware/.build/tmp_${FILE}.uf2 keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.uf2 | true
+	$(eval QMK_KB := tmp/${KB}$(if $(strip ${KR}),/${KR}))
+	$(eval FILE := $(shell echo "${kb}$(if $(strip ${kr}),_${kr})_${km}" | sed 's/\//_/'))
+	cd src/qmk/qmk_firmware; qmk compile -kb ${QMK_KB} -km ${KM}
+	@for ext in bin hex uf2; do \
+		src=src/qmk/qmk_firmware/.build/tmp_${FILE}.$$ext; \
+		if [ -f $$src ]; then cp $$src keyboards/${KB}/qmk/qmk_firmware/.build/${FILE}.$$ext; echo "Copied ${FILE}.$$ext"; fi; \
+	done
 
 qmk-flash:
 	$(eval KB := ${kb})
 	$(eval KR := ${kr})
 	$(eval KM := ${km})
-	cd src/qmk/qmk_firmware; qmk flash -kb tmp/${KB}/${KR} -km ${KM}
+	$(eval QMK_KB := tmp/${KB}$(if $(strip ${KR}),/${KR}))
+	cd src/qmk/qmk_firmware; qmk flash -kb ${QMK_KB} -km ${KM}
 
 qmk-init-all:
 	kb=crkbd make qmk-init
 	kb=cornelius make qmk-init
 	kb=lskbd make qmk-init
+	kb=mrkbd make qmk-init
 
 qmk-compile-all:
 	kb=crkbd kr=rev1 km=via make qmk-compile
@@ -45,9 +52,12 @@ qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=via make qmk-compile
 	kb=crkbd kr=rev4_1/standard km=via make qmk-compile
 	kb=crkbd kr=rev4_1/mini km=via make qmk-compile
+	kb=crkbd kr=rev5_0/standard km=via make qmk-compile
+	kb=crkbd kr=rev5_0/mini km=via make qmk-compile
 	kb=cornelius kr=rev1 km=via make qmk-compile
 	kb=cornelius kr=rev2 km=via make qmk-compile
 	kb=lskbd kr=rev1 km=via make qmk-compile
+	kb=mrkbd km=via make qmk-compile
 
 vial-qmk-clean:
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp
@@ -68,8 +78,10 @@ vial-qmk-compile:
 	$(eval KM := ${km})
 	$(eval FILE := $(shell echo "${kb}_${kr}_${km}" | sed 's/\//_/'))
 	cd src/vial-kb/vial-qmk; qmk compile -kb tmp/${KB}/${KR} -km ${KM}
-	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.hex keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.hex | true
-	cp src/vial-kb/vial-qmk/.build/tmp_${FILE}.uf2 keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.uf2 | true
+	@for ext in bin hex uf2; do \
+		src=src/vial-kb/vial-qmk/.build/tmp_${FILE}.$$ext; \
+		if [ -f $$src ]; then cp $$src keyboards/${KB}/vial-kb/vial-qmk/.build/${FILE}.$$ext; echo "Copied ${FILE}.$$ext"; fi; \
+	done
 
 vial-qmk-flash:
 	$(eval KB := ${kb})
@@ -87,6 +99,8 @@ vial-qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=vial_mini make vial-qmk-compile
 	kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4_1/mini km=vial_mini make vial-qmk-compile
+	kb=crkbd kr=rev5_0/standard km=vial_rev5 make vial-qmk-compile
+	kb=crkbd kr=rev5_0/mini km=vial_rev5_mini make vial-qmk-compile
 	kb=cornelius kr=rev2 km=vial make vial-qmk-compile
 	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
